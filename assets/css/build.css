@@ -208,7 +208,9 @@ header .header__phone {
     font-size: 20px;
     line-height: 31px;
     color: #fff;
+    margin-top: 0px;
     margin-bottom: 25px;
+    text-align: center;
 }
 .banner__action {
     text-align: center;
@@ -306,7 +308,10 @@ header .header__phone {
     padding: 80px 0px;
 }
 .about__image {
-    background-image: url("../img/about.jpg");
+    background-image: url(../img/about.jpg);
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
 }
 /*Grid section*/
 
@@ -673,7 +678,9 @@ header .header__phone {
 .contact__info--text a:hover {
     color: #81b522;
 }
-
+/*
+* Contact
+*/
 
 .container--carousel {
     position: relative;
@@ -682,29 +689,6 @@ header .header__phone {
     width: 100%;
     height: 280px;
     position: relative;
-}
-.content__text {
-    max-width: 50%;
-    margin: 0 auto;
-    font-size: 14px;
-    line-height: 24px;
-    font-family: sans-serif;
-    color: #000;
-    padding: 10px 15px;
-    box-sizing: border-box !important;
-    opacity: 0;
-    transition: opacity .5s ease;
-    position: relative;
-   
-}
-.content__text.content__text--in {
-    opacity: 1;
-}
-.content__text.content__text--out {
-    opacity: 0;
-}
-.content__text.content__text--none {
-    display: none;
 }
 .carousel {
     position: relative;
@@ -829,4 +813,278 @@ header .header__phone {
 }
 .carousel__arrow:hover {
     opacity: 0.75;
+}
+
+/*
+* Carousel
+*/
+
+.modal-btn {
+  text-align: center;
+  padding: .6em .8em .8em;
+  border: none;
+  color: white;
+  background: lightgray;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: inset 0 -.2em rgba(0,0,0, .2);
+  outline: 0;
+  transition: .2s;
+  will-change: transform;
+}
+.modal-btn.primary {
+  background: #7dc800;
+}
+.modal-btn.warning {
+  background: #ff463b;
+}
+
+.modal-btn:active {
+  transform: scale(.9);
+}
+.modal-buttons {
+  position: absolute;
+  right: -.75px;
+  top: -.75px;
+  transform: rotate(45deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fec900;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.modal-buttons:hover { 
+  background: #23225b;
+}
+.modal-buttons i {
+  transition: all 0.3s ease;
+  transform: rotate(-45deg);
+  color: #23225b;
+}
+.modal-buttons:hover i {
+  color: #fec900;
+}
+.overlay {
+  background: rgba(32,32,32,.95);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*transition: 300s ease-in;*/
+  opacity: 1;
+  /*visibility: hidden;*/
+  display: none;
+  z-index: 100;
+  transition: all 0.8s ease;
+}
+.overlay.active {
+  /*opacity: 1;*/
+  /*visibility: visible;*/
+  display: flex;
+}
+.overlay.fadeIn--overlay {
+  opacity: 0;
+}
+.modal__overflow {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.modal {
+  left: 0;
+  right: 0;
+  top: 70px;
+  max-width: 768px;
+  width: 90%;
+  background: #fff;
+  padding: 2em;
+  border-radius: 17.5px;
+  text-align: center;
+  z-index: 9999;
+  transform: translateY(-3000px);
+  position: fixed;
+  max-height: 80%;
+  margin: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,.3);
+}
+#modal-content {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.modal-content {
+  display: flex;
+}
+
+.modal-content img {
+  width: 170px;
+  height: 256px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+.modal-content p {
+  align-self: center;
+}
+/*@keyframes animationIn {*/
+@keyframes modalIn {
+  0% {
+    transform: translateY(-3000px);
+  }
+  60% {
+    transform: translateY(25px);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  90% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/*@keyframes animationOut {*/
+@keyframes modalOut {
+  0% {
+    transform: translateY(5px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+  75% {
+    transform: translateY(25px);
+  }
+  100% {
+    transform: translateY(-3000px);
+  }
+}
+
+
+.modal--hidden {
+  display: none;
+}
+.modal--visible {
+  display: block;
+}
+.modal__service {
+  position: relative;
+}
+.modal__img__service {
+  max-width: 100%;
+}
+.modal__name__service {
+  background: #23225b;
+  color: #fff;
+  font-size: 22px;
+  padding: 10px 0;
+}
+.modal__text__service {
+  text-align: left;
+}
+
+/*
+* Modal
+*/
+
+@media screen and (max-width: 1200px) {
+    header .header__container {
+        grid-template: 115px / 150px 1fr 225px;
+    }
+    .btn__small {
+        font-size: 16px;
+        line-height: 16px;
+    }
+    .btn {
+        font-size: 22px;
+        line-height: 23px;
+    }
+    .banner__p {
+        font-size: 18px;
+        line-height: 28px;
+        margin-bottom: 20px;
+    }
+    .section__title {
+        font-size: 42px;
+        line-height: 42px;
+        margin-bottom: 50px;
+    }
+    .grid__service--title {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .carousel {
+        max-width: 960px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .form__send button {
+        font-size: 18px;
+        line-height: 21px;
+    }
+    .carousel {
+        max-width: 768px;
+    }
+    .carousel__panel {
+        width: 229px;
+        height: 229px;
+    }
+    .carousel__panel--inView.carousel__panel--center {
+        left: calc(229px + calc(calc(100% - 687px) / 2));
+    }
+    .form__send button {
+        font-size: 18px;
+        line-height: 21px;
+    }
+    .form__send button span {
+        line-height: 14px;
+    }
+    .form__send button img {
+        margin-left: 15px;
+        width: 22px;
+    }
+    .contact__schedule {
+        margin-bottom: 40px;
+    }
+    .grid__about {
+        grid-template: 1fr / 1fr 400px;
+        grid-gap: 50px;
+    }
+    .contact__schedule li {
+        margin-bottom: 10px;   
+    }
+    .contact__schedule li, 
+    .contact__info--text {
+        font-size: 18px;
+        line-height: 18px; 
+    }
+}
+
+@media screen and (max-width: 768px) {
+  .modal {
+    width: 90%;
+    max-height: 80%;
+  } 
+}
+
+@media screen and (max-width: 575px) {
+
 }
