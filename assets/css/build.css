@@ -343,9 +343,82 @@ header .header__phone {
     font-size: 16px;
     line-height: 15px;
 }
+.form__field--input:focus {
+    outline: none;
+}
 .form__field--textarea {
     resize: none;
-    min-height: 145px;
+    min-height: 138px;
+}
+.form__field--select {
+    position: relative;
+}
+.form__field--select--selected {
+    width: 100%;
+    height: 44px;
+    padding: 0 25px;
+    background: #e0e0e0;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.form__field--select.form__field--select--active {
+
+}
+.form__field--select--text {}
+.form__field--chevron {
+    height: 100%;
+    width: 50px;
+    right: 0;
+    top: 0;
+    position: absolute;
+    line-height: 44px;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    background: #678d2d;
+    color: #fff;
+    transition: all .3s ease-in-out;
+}
+
+.form__field--chevron:hover,
+.form__field--select.form__field--select--active .form__field--chevron {
+    background: #0c7bbf;
+}
+.form__field--select.form__field--select--active .form__field--chevron i {
+    transform: rotate3d(0,0,1,180deg);
+}
+.form__field--options {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    background: #0c7bbf;
+    color: #fff;
+    opacity: 0;
+    height: 0px;
+    overflow: hidden;
+    padding: 0;
+    transform: translateY(-13px) rotate3d(1,0,0, 60deg);    
+    box-shadow: 0px 9px 9px 0px rgba(0,0,0,0.4);
+    transition: transform .3s ease-out, opacity .2s ease-in;
+}
+.form__field--select.form__field--select--active .form__field--options {
+    transform: translateY(0px) rotate3d(1,0,0, 0deg);
+    opacity: 1;
+    height: auto;
+    padding: 15px 25px;
+}
+.form__field--options li {
+    cursor: pointer;
+    transition: all .3s ease-out;
+}
+.form__field--options li:hover {
+    background: rgba(255,255,255,.2);
+}
+.form__field--options li:active {
+    background: rgba(255,255,255,.3);
 }
 .form__field.form__field--error .form__field--input {
     border-color: red;
