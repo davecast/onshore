@@ -25,6 +25,11 @@ h2.big {
     line-height: 100%;
 }
 
+figure {
+    margin: 0px;
+    font-size: 0px;
+}
+
 #main {
     padding-top: 115px;
 }
@@ -148,8 +153,6 @@ header .header__logo h1 {
     margin: 0;
 }
 header .header__logo figure {
-    margin: 0;
-    font-size: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -273,6 +276,9 @@ header .header__phone {
     display: grid;
     grid-template: 1fr / repeat(2, 1fr);
     grid-gap: 40px;
+}
+.grid_request.grid_request--contact {
+    grid-gap: 70px;
 }
 .grid_request--form {
     background: #fff;
@@ -521,4 +527,76 @@ header .header__phone {
     margin: 0 auto;
     text-align: center;
     color: #Fff;
+}
+
+/*
+* Testimonials
+*/
+.contact__title {
+    display: grid;
+    grid-template: 1fr / 70px 1fr;
+    align-items: center;
+}
+.contact__title figure {
+    background: #fff;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+.contact__title figure img {}
+.contact__title--text {
+    transform: translateX(-25px);
+    display: flex;
+    align-items: center;
+}
+.contact__title--text span {
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: bold;
+    color: #81b522;
+    background: #fff;
+    position: relative;
+    padding: 4px 30px 5px 40px;
+    border-radius: 20px;
+}
+.contact__schedule {
+    margin-left: 50px;
+    margin-bottom: 60px;
+    list-style-image: url('../img/dot.png');
+}
+.contact__schedule li {
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 15px;
+    color: #81b522;
+}
+.contact__info {
+    display: grid;
+    grid-template: 40px / 40px 1fr;
+    align-items: center;
+    grid-gap: 15px;
+    margin-bottom: 15px;
+}
+.contact__info figure {
+    width: 40px;
+    height: 40px;
+}
+.contact__info figure img {
+    max-width: 100%;
+}
+.contact__info--text {
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: bold;
+    color: #81b522;
+}
+.contact__info--text a {
+    color: #81b522;
+}
+.contact__info--text a:hover {
+    color: #81b522;
 }
