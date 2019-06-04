@@ -136,7 +136,7 @@ header {
 }
 header .header__burguer {
     position: absolute;
-    right: 40px;
+    right: 5%;
     top: calc(50% - 25px);
     width: 50px;
     height: 50px;
@@ -1146,7 +1146,7 @@ header .header__phone {
     header .header__container {
         grid-template: 90px / 150px;
         width: 100%;
-        width: 100%;
+        padding: 0px 5%;
     }
     header .header__menu {
         position: absolute;
