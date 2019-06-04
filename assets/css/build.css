@@ -134,7 +134,20 @@ header {
     box-shadow: 1px 1px 10px 4px rgba(0,0,0,0.2);
     z-index: 10;
 }
+header .header__burguer {
+    position: absolute;
+    right: 40px;
+    top: calc(50% - 25px);
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 40px;
+    text-align: center;
+    color: #81b522;
+    display: none;
+}
 header .header__container {
+    position: relative;
     width: 95%;
     max-width: 1300px;
     margin: 0 auto;
@@ -1123,12 +1136,180 @@ header .header__phone {
 }
 
 @media screen and (max-width: 768px) {
-  .modal {
-    width: 90%;
-    max-height: 80%;
-  } 
+    .modal {
+        width: 90%;
+        max-height: 80%;
+    } 
+    header {
+        height: 90px;
+    }
+    header .header__container {
+        grid-template: 90px / 150px;
+        width: 100%;
+        width: 100%;
+    }
+    header .header__menu {
+        position: absolute;
+        top: 90px;
+        max-width: 100%;
+        background: #fff;
+        flex-direction: column;
+        height: 0;
+        overflow: hidden;
+        transform: translateY(-13px) rotate3d(1,0,0, 60deg);    
+        box-shadow: 0px 9px 9px 0px rgba(0,0,0,0.15);
+        transition: transform .3s ease-out, opacity .2s ease-in;
+    }
+    header .header__menu.header__menu--active {
+        padding: 25px;
+        transform: translateY(0px) rotate3d(1,0,0, 0deg);
+        opacity: 1;
+        height: auto;
+    }
+    header .header__burguer {
+        display: block;
+    }
+    header .header__right {
+        display: none;
+    }
+    header .header__logo figure img {
+        height: 80px;
+    }
+    header .header__menu li a {
+        font-size: 20px;
+        line-height: 20px;
+    }
+    header .header__menu li {
+        margin-bottom: 15px;
+    }
+    header .header__menu li:last-child {
+        margin-bottom: 0px;
+    }
+    #main {
+        padding-top: 90px;
+    }
+    .grid__service {
+        grid-template: 1fr / repeat(2, 1fr);
+        grid-gap: 25px;
+        margin-bottom: 25px;
+    }
+    .grid__service__mini {
+        grid-gap: 25px;
+        margin: 0 auto 60px;
+        max-width: 100%;
+    }
+    .section__title {
+        font-size: 32px;
+        line-height: 32px;
+    }
+    .grid_request {
+        grid-template: 1fr / repeat(1, 1fr);
+        grid-gap: 25px;
+    }
+    .grid__about {
+        grid-template: 450px 1fr / 1fr;
+        grid-gap: 0px;
+    }
+    .about__text {
+        padding: 40px 0px;
+        order: 2;
+    }
+    .about__image {
+        order: 1;
+        background-size: contain;
+    }
+    .container.container__95 {
+        max-width: 90%;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .slider__small .slider__item {
+        padding: 45px 45px;
+    }
+    .footer--menu {
+        flex-direction: column;
+    }
+    .footer--menu li {
+        margin-bottom: 15px;
+        line-height: 15px;
+    }
+    .footer--menu li:last-child {
+        margin-bottom: 0px;
+    }
+    .footer--pie p {
+        font-size: 14px;
+        line-height: 14px;
+    }
+    .carousel {
+        max-width: 490px;
+    }
+    .carousel__panel {
+        width: 150px;
+        height: 150px;
+    }
+    .carousel__panel--inView.carousel__panel--center {
+        left: calc(150px + calc(calc(100% - 450px) / 2));
+    }
+    .carouselContainer {
+        width: 100%;
+        height: 150px;
+        position: relative;
+    }
 }
 
 @media screen and (max-width: 575px) {
-
+    #testimonials .testimonial__avatar {
+        width: 120px;
+        height: 120px;
+    }
+    #testimonials .testimonial__rating {
+        width: 125px;
+    }
+    .grid__service {
+        grid-template: 1fr / repeat(1, 1fr);
+        grid-gap: 20px;
+        margin-bottom: 20px;
+    }
+    .grid__service__mini {
+        grid-gap: 20px;
+        margin: 0 auto 40px;
+        grid-template: 1fr / repeat(1, 1fr);
+    }
+    .carousel {
+        max-width: calc(100% - 90px);
+    }
+    .carousel__panel--inView.carousel__panel--center {
+        left: 0;
+    }
+    .carouselContainer {
+        height: 270px;
+    }
+    .carousel__panel {
+        height: 100%;
+        width: 100%;
+    }
+    .section {
+        padding: 40px 0;
+    }
+    .section__title {
+        font-size: 28px;
+        line-height: 32px;
+        margin-bottom: 25px;
+    }
+    .grid_request--form--title {
+        font-size: 20px;
+        line-height: 22px;
+        margin-bottom: 25px;
+    }
+    .grid_request--form {
+        padding: 30px 20px;
+    }
+    .contact__schedule li, .contact__info--text {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .btn {
+        font-size: 18px;
+        line-height: 23px;
+    }
 }
