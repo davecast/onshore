@@ -1008,13 +1008,13 @@ header .header__phone {
     header .header__container {
         grid-template: 115px / 150px 1fr 225px;
     }
-    .btn__small {
-        font-size: 16px;
-        line-height: 16px;
-    }
     .btn {
         font-size: 22px;
         line-height: 23px;
+    }
+    .btn__small {
+        font-size: 16px;
+        line-height: 16px;
     }
     .banner__p {
         font-size: 18px;
@@ -1036,9 +1036,21 @@ header .header__phone {
 }
 
 @media screen and (max-width: 960px) {
-    .form__send button {
-        font-size: 18px;
-        line-height: 21px;
+    header .header__container {
+        grid-template: 115px / 150px 1fr 170px;
+    }
+    .btn__small {
+        font-size: 11px;
+        line-height: 16px;
+    }
+    header .header__phone {
+        font-size: 16px;
+        line-height: 16px
+    }
+    .section__title {
+        font-size: 38px;
+        line-height: 38px;
+        margin-bottom: 40px;
     }
     .carousel {
         max-width: 768px;
@@ -1075,6 +1087,38 @@ header .header__phone {
     .contact__info--text {
         font-size: 18px;
         line-height: 18px; 
+    }
+    .footer {
+        padding: 40px 0px 0px;
+    }
+    .footer--figure {
+        margin-bottom: 40px;
+    }
+    .footer--figure figure {
+        max-width: 250px;
+    }
+    .footer--menu {
+        margin: 0 auto 40px;
+    }
+    .footer--social {
+        margin: 0 auto 40px;
+        max-width: 100px;
+    }
+    .footer--social li {
+        width: 35px;
+        height: 35px;
+    }
+    .footer--social li a {
+        width: 35px;
+        height: 35px;
+    }
+    .footer--pie {
+        background: #668c14;
+        padding: 35px 0px;
+    }
+    .footer--pie p {
+        font-size: 16px;
+        line-height: 16px;
     }
 }
 
