@@ -1216,7 +1216,8 @@ header .header__phone {
     }
     .about__image {
         order: 1;
-        background-size: contain;
+        background-size: cover;
+        background-position: bottom left;
     }
     .container.container__95 {
         max-width: 90%;
@@ -1311,5 +1312,17 @@ header .header__phone {
     .btn {
         font-size: 18px;
         line-height: 23px;
+    }
+    .banner__p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .paragraph__box {
+        line-height: 24px;
+        font-size: 16px;
+    }
+    #testimonials .testimonial__text {
+        font-size: 16px;
+        line-height: 24px;
     }
 }
