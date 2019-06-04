@@ -1325,4 +1325,7 @@ header .header__phone {
         font-size: 16px;
         line-height: 24px;
     }
+    .section__fullheight {
+        height: calc(100vh - 90px);
+    }
 }
