@@ -30,6 +30,78 @@ figure {
     font-size: 0px;
 }
 
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f7f7f7;
+    z-index: 20;
+    height: 100%;
+    transition: all 0.6s ease;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.loading--hidden {
+    opacity: 0;
+}
+.loading__preloader {
+  
+}
+.loading__logo {
+    max-width: 160px;
+}
+.loading__animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -1400px; }
+}
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  width: 13px;
+  background: #81b522;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 6px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 26px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 45px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 6px;
+    height: 51px;
+  }
+  50%, 100% {
+    top: 19px;
+    height: 26px;
+  }
+}
+  
+
 #main {
     padding-top: 115px;
 }
