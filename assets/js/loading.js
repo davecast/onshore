@@ -4,6 +4,6 @@ window.onload = function() {
 
 	setTimeout(()=>{
 		$loading.remove();
-		console.log('Charge')
+		init();
 	},1000)
 };

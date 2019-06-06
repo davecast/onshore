@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/build.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="assets/js/loading.js"></script>
 </head>
 <body>
@@ -31,11 +32,11 @@
                 <i class="fas fa-bars"></i>
             </div>
             <ul class="header__menu">
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">OUR SERVICES</a></li>
-                <li><a href="#">PORTFOLIO</a></li>
-                <li><a href="#">ABOUT US</a></li>
-                <li><a href="#">CONTACT US</a></li>
+                <li><a class="header__link" href="#banner">HOME</a></li>
+                <li><a class="header__link" href="#services">OUR SERVICES</a></li>
+                <li><a class="header__link" href="#portfolio">PORTFOLIO</a></li>
+                <li><a class="header__link" href="#about">ABOUT US</a></li>
+                <li><a class="header__link" href="#contact">CONTACT US</a></li>
             </ul>
             <div class="header__right">
                 <a class="header__phone" href="tel:+17723532685">+1 772 353 2685</a>
@@ -45,7 +46,7 @@
     </header>
 
     <main id="main">
-        <section class="section section__centered section__fullheight" style="background-image: url(./assets/img/banner.jpg)">
+        <section id="banner" class="section section__centered section__fullheight" style="background-image: url(./assets/img/banner.jpg)">
             <div class="container">
                 <div class="banner__content">
                     <p class="banner__p">
@@ -58,7 +59,7 @@
             </div>
         </section>
         <!-- Services -->
-        <section class="section">
+        <section id="services" class="section">
             <div class="container">
                 <div class="title__box">
                     <h2 class="section__title section__title--green">ONSHORE <strong>CLEANING SERVICES</strong></h2>
@@ -141,7 +142,7 @@
         </section>
         <!-- Services -->
         <!-- Portfolio -->
-        <section class="section section--blue">
+        <section id="portfolio" class="section section--blue">
             <div class="container">
                 <div class="title__box">
                     <h2 class="section__title section__title--white"><strong>PORTFOLIO</strong></h2>
@@ -245,11 +246,11 @@
                                             </div>
                                         </div>
                                         <ul class="form__field--options">
-                                            <li>lorem 1</li>
-                                            <li>lorem 2</li>
-                                            <li>lorem 3</li>
-                                            <li>lorem 4</li>
-                                            <li>lorem 5</li>
+                                            <li data-value="lorem1">lorem 1</li>
+                                            <li data-value="lorem2">lorem 2</li>
+                                            <li data-value="lorem3">lorem 3</li>
+                                            <li data-value="lorem4">lorem 4</li>
+                                            <li data-value="lorem5">lorem 5</li>
                                         </ul>
                                     </div>
                                     <span class="form__field--message">This is test only message</span>
@@ -267,11 +268,11 @@
                                             </div>
                                         </div>
                                         <ul class="form__field--options">
-                                            <li>lorem 1</li>
-                                            <li>lorem 2</li>
-                                            <li>lorem 3</li>
-                                            <li>lorem 4</li>
-                                            <li>lorem 5</li>
+                                            <li data-value="lorem21">lorem 1</li>
+                                            <li data-value="lorem22">lorem 2</li>
+                                            <li data-value="lorem23">lorem 3</li>
+                                            <li data-value="lorem24">lorem 4</li>
+                                            <li data-value="lorem25">lorem 5</li>
                                         </ul>
                                     </div>
                                     <span class="form__field--message">This is test only message</span>
@@ -289,11 +290,11 @@
                                             </div>
                                         </div>
                                         <ul class="form__field--options">
-                                            <li>lorem 1</li>
-                                            <li>lorem 2</li>
-                                            <li>lorem 3</li>
-                                            <li>lorem 4</li>
-                                            <li>lorem 5</li>
+                                            <li data-value="lorem31">lorem 1</li>
+                                            <li data-value="lorem32">lorem 2</li>
+                                            <li data-value="lorem33">lorem 3</li>
+                                            <li data-value="lorem34">lorem 4</li>
+                                            <li data-value="lorem35">lorem 5</li>
                                         </ul>
                                     </div>
                                     <span class="form__field--message">This is test only message</span>
@@ -311,11 +312,11 @@
                                             </div>
                                         </div>
                                         <ul class="form__field--options">
-                                            <li>lorem 1</li>
-                                            <li>lorem 2</li>
-                                            <li>lorem 3</li>
-                                            <li>lorem 4</li>
-                                            <li>lorem 5</li>
+                                            <li data-value="lorem41">lorem 1</li>
+                                            <li data-value="lorem42">lorem 2</li>
+                                            <li data-value="lorem43">lorem 3</li>
+                                            <li data-value="lorem44">lorem 4</li>
+                                            <li data-value="lorem45">lorem 5</li>
                                         </ul>
                                     </div>
                                     <span class="form__field--message">This is test only message</span>
@@ -337,7 +338,7 @@
         </section>
         <!-- Estimate -->
         <!-- About us -->
-        <section>
+        <section id="about">
             <div class="container container__95">
                 <div class="grid__about">
                     <div class="about__text">
@@ -466,7 +467,7 @@
         </section>
         <!-- Testimonials -->
         <!-- Contact us -->
-        <section class="section section--white--b">
+        <section id="contact" class="section section--white--b">
             <div class="container">
                 <div class="title__box">
                     <h2 class="section__title section__title--green"><strong>CONTACT US</strong></h2>
