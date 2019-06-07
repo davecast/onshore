@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <header class="header">
+    <header id="header" class="header">
         <div class="header__container">
             <div class="header__logo">
                 <h1>Onshore</h1>
@@ -65,7 +65,7 @@
                     <h2 class="section__title section__title--green">ONSHORE <strong>CLEANING SERVICES</strong></h2>
                 </div>
                 <div class="grid__service">
-                    <div class="grid__service--featured">
+                    <div data-template="services" class="grid__service--featured modal__open">
                         <figure class="grid__service--background">
                             <img src="./assets/img/s1.png" alt="regular cleaning">
                         </figure>
@@ -73,7 +73,7 @@
                             REGULAR CLEANING
                         </div>
                     </div>
-                    <div class="grid__service--featured">
+                    <div data-template="services" class="grid__service--featured modal__open">
                         <figure class="grid__service--background">
                             <img src="./assets/img/s2.png" alt="regular cleaning">
                         </figure>
@@ -81,7 +81,7 @@
                             DEEP CLEANING
                         </div>
                     </div>
-                    <div class="grid__service--featured">
+                    <div data-template="services" class="grid__service--featured modal__open">
                         <figure class="grid__service--background">
                             <img src="./assets/img/s3.png" alt="regular cleaning">
                         </figure>
@@ -89,7 +89,7 @@
                             MOVE IN/OUT CLEANING
                         </div>
                     </div>
-                    <div class="grid__service--featured">
+                    <div data-template="services" class="grid__service--featured modal__open">
                         <figure class="grid__service--background">
                             <img src="./assets/img/s4.png" alt="regular cleaning">
                         </figure>
@@ -97,7 +97,7 @@
                             OFFICE CLEANING
                         </div>
                     </div>
-                    <div class="grid__service--featured">
+                    <div data-template="services" class="grid__service--featured modal__open">
                         <figure class="grid__service--background">
                             <img src="./assets/img/s5.png" alt="regular cleaning">
                         </figure>
@@ -105,7 +105,7 @@
                             OVEN CLEANING
                         </div>
                     </div>
-                    <div class="grid__service--featured">
+                    <div data-template="services" class="grid__service--featured modal__open">
                         <figure class="grid__service--background">
                             <img src="./assets/img/s6.png" alt="regular cleaning">
                         </figure>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div class="grid__service__mini">
-                    <div class="grid__service--featured">
+                    <div data-template="services" class="grid__service--featured modal__open">
                         <figure class="grid__service--background">
                             <img src="./assets/img/s7.png" alt="regular cleaning">
                         </figure>
@@ -123,7 +123,7 @@
                             KITCHEN CABINETS CLEANING
                         </div>
                     </div>
-                    <div class="grid__service--featured">
+                    <div data-template="services" class="grid__service--featured modal__open">
                         <figure class="grid__service--background">
                             <img src="./assets/img/s8.png" alt="regular cleaning">
                         </figure>
@@ -346,10 +346,10 @@
                             <h2 class="section__title section__title--green section__title--half--margin"><strong>ABOUT US</strong></h2>
                         </div>
                         <p class="paragraph__box">
-                            OnShore Cleaning is your one stop solution that provides unique services, for all of your cleaning needs and requirements. You might be in need of a professional and trustworthy cleaning team for your home, apartment or office and we at OnShore assure nothing less..
+                            OnShore Cleaning is your one stop solution that provides unique services, for all of your cleaning needs and requirements. You might be in need of a professional and trustworthy cleaning team for your home, apartment or office and we at OnShore assure nothing less.
                         </p>
                         <p class="paragraph__box">
-                            OnShore Cleaning was established back in January 2010. We pinpointed a huge opportunity to introduce new and effective cleaning services to the cleaning industry. With that being said, we have what it takes to be able to assure a spotless clean, no matter what it takes!
+                            OnShore Cleaning was established back in January 2010. We pinpointed a huge opportunity to introduce new and effective cleaning services to the cleaning industry. With that being said, we have what it takes to be able to assure a spotless clean, no matter what it takes! It has to end in a period.
                         </p>
                         <div class="title__box title__box--left">
                             <h2 class="section__title section__title--green section__title--half--margin"><strong>OUR MISSION</strong></h2>
@@ -361,7 +361,7 @@
                             <h2 class="section__title section__title--green section__title--half--margin"><strong>WHY CHOOSE US</strong></h2>
                         </div>
                         <p class="paragraph__box paragraph__box--last">
-                            OnShore Cleaning works at aiming to provide high quality, reliable and safe cleaning services for your home, apartment or office space. We strive at building very strong customer relations to earn our.
+                            OnShore Cleaning works at aiming to provide high quality, reliable and safe cleaning services for your home, apartment or office space. We strive at building very strong customer relations to earn our valuable customers trust and value.
                         </p>
                     </div>
                     <div class="about__image"></div>
@@ -532,7 +532,7 @@
                                 <img src="./assets/img/phone.png" />
                             </figure>
                             <div class="contact__info--text">
-                                <a href="tel:+17723532685">+1 772353 26 85</a>
+                                <a href="tel:+17723532685">+1 772-353-2685</a>
                             </div>
                         </div>
                         <div class="contact__info">
@@ -601,6 +601,19 @@
             <p>Designed by <a href="https://www.instagram.com/dicloudve/?hl=es-la" target="_blank">diCloudve</a> & Developed by <a href="https://davecast.github.io/" target="_blank">Davecast</a>, <a href="privacy-policy.html">Privacy policy.</a> </p>
         </div>
     </footer>
+
+    <!-- Modal -->
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="modal">
+        <div id="modal-content">
+        </div>
+        <div id="hide-modal" class="modal-buttons">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+
+    <!-- Modal -->
 
     <script src="assets/js/build.js"></script>
 </body>

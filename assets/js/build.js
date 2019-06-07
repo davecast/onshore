@@ -1,38 +1,61 @@
 
 function init () {
 
+	/*Declare variables*/
 	let $body = document.querySelector('body');
 	let $burgueMenu = document.querySelector('.header__burguer');
-	var $sliders = document.querySelectorAll('.container--carousel');
+	let captchaContact = false
+	let captchaQuote = false
+	let $sliders = document.querySelectorAll('.container--carousel');
+	let $banner = document.getElementById('banner');
+	let $services = document.getElementById('services');
+	let $portfolio = document.getElementById('portfolio');
+	let $about = document.getElementById('about');
+	let $contact = document.getElementById('contact');
+	let $selectFields = document.querySelectorAll('.form__field--select');
+	let $slider = $('.slider');
+	let $modalOpen = document.querySelectorAll('.modal__open');
+	const header = document.getElementById('header');
+	const $overlay = document.getElementById('overlay');
+	const $modal = document.getElementById('modal');
+	const $hideModal = document.getElementById('hide-modal');
+	const $modalContent = document.getElementById('modal-content');
+	const $modalSignin = document.getElementById('modal-signin');
+	const $modalSignup = document.getElementById('modal-signup');
 
-	window.onscroll = function() {
-		onScrollAction()
+	/*Functions*/
+	function isEmpty(obj) {
+	    for(var key in obj) {
+	        if(obj.hasOwnProperty(key))
+	            return false;
+	    }
+	    return true;
 	}
 
-	var header = document.getElementById('header')
-
-	let $banner = document.getElementById('banner')
-	let $services = document.getElementById('services')
-	let $portfolio = document.getElementById('portfolio')
-	let $about = document.getElementById('about')
-	let $contact = document.getElementById('contact')
-
-
-	const Smooth = (e) => {
-	  e.preventDefault();
-
-	  $('html, body').animate({
-	      scrollTop: $(e.target.hash ? e.target.hash : e.target.dataset.link ).offset().top - 60
-	  }, 600);
+	function scrollTo() {
+		const links = document.querySelectorAll('.header__link');
+		links.forEach(each => (each.onclick = scrollAnchors));
 	}
 
-	$('.header__link').click((e)=>{
-	  	Smooth(e)
-	})
+	function scrollAnchors(e, respond = null) {
+		const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
+		e.preventDefault();
+		var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
+		const targetAnchor = document.querySelector(targetID);
+		if (!targetAnchor) return;
+		const originalTop = distanceToTop(targetAnchor);
+		window.scrollBy({ top: originalTop - header.clientHeight, left: 0, behavior: 'smooth' });
+		const checkIfDone = setInterval(function() {
+			const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
+			if (distanceToTop(targetAnchor) === 0 || atBottom) {
+				targetAnchor.tabIndex = '-1';
+				targetAnchor.focus();
+				window.history.pushState('', '', targetID);
+				clearInterval(checkIfDone);
+			}
+		}, 100);
+	}
 
-	$('.link__page').click((e)=>{
-		Smooth(e)
-	})
 	function onScrollAction () {
 		
 		if ( (window.pageYOffset > $banner.offsetTop - 150) && (window.pageYOffset < ($banner.offsetHeight + $banner.offsetTop - 150) ) ) {
@@ -103,7 +126,6 @@ function init () {
 
 			setTimeout(()=>{
 				this.action = true;
-				console.log('verdadero')
 			}, 650)
 
 		};
@@ -148,7 +170,6 @@ function init () {
 				
 			setTimeout(()=>{
 				this.action = true;
-				console.log('verdadero')
 			}, 650)
 
 		};
@@ -170,123 +191,25 @@ function init () {
 		}
 	}
 
-	$sliders.forEach((element, index) => {
-		element.slider = new Person(element);
-		element.slider.initial();
-		
-		element.querySelector('.carousel__arrow--left').addEventListener('click', (e) => {
-			if (element.slider.action) {
+	function callCarousels () {
+		$sliders.forEach((element, index) => {
+			element.slider = new Person(element);
+			element.slider.initial();
+			
+			element.querySelector('.carousel__arrow--left').addEventListener('click', (e) => {
+				if (element.slider.action) {
+					element.slider.moverI();
+					element.slider.action = false;
+				}
+			});
 
-				element.slider.moverI();
-				console.log('falso')
-				element.slider.action = false;
-			}
+			element.querySelector('.carousel__arrow--right').addEventListener('click', (e) => {
+				if (element.slider.action) {
+					element.slider.moverD();
+					element.slider.action = false;
+				}
+			});
 		});
-
-		element.querySelector('.carousel__arrow--right').addEventListener('click', (e) => {
-			if (element.slider.action) {
-				element.slider.moverD();
-				console.log('falso')
-				element.slider.action = false;
-			}
-		});
-	});
-	
-	$burgueMenu.addEventListener('click', (e) => {
-		let $headerMenu = document.querySelector('.header__menu');
-		$headerMenu.classList.toggle('header__menu--active');
-	});
-
-	let $selectFields = document.querySelectorAll('.form__field--select');
-	
-	$selectFields.forEach((selectField) => {
-		selectField = new SelectField(selectField);
-	});
-
-	let $slider = $('.slider')
-
-	const moveR = (elem) => {
-		let $sliderActiveBefore = $(elem).find('.slider__container--active').get(0);
-		$($sliderActiveBefore).addClass("slider__container--hidden").delay(600).queue(function(next){
-		    $(this).removeClass("slider__container--hidden slider__container--active");
-		    next();
-		});
-		
-		let $sliderItem = $(elem).children('.slider__item').get(2);
-		
-		let $sliderContainer = $($sliderItem).find('.slider__container').get(0);
-		
-		$($sliderContainer).delay(600).queue(function(next){
-		    $(this).addClass('slider__container--active')
-		    next();
-		});
-
-		$(elem).animate({
-			marginLeft: `-${200}%`
-		},1000, "linear", function() {
-			$(this.firstElementChild).insertAfter(this.lastElementChild)
-			$(this).css('margin-left', `-${100}%`)
-		})
-
-	}
-	const moveL = (elem) => {
-
-		let $sliderActiveBefore = $(elem).find('.slider__container--active').get(0);
-		$($sliderActiveBefore).addClass("slider__container--hidden").delay(600).queue(function(next){
-		    $(this).removeClass("slider__container--hidden slider__container--active");
-		    next();
-		});
-
-		let $sliderItem = $(elem).children('.slider__item').get(0);
-		let $sliderContainer = $($sliderItem).find('.slider__container').get(0);
-
-		$($sliderContainer).delay(600).queue(function(next){
-		    $(this).addClass('slider__container--active')
-		    next();
-		});
-
-
-		$(elem).animate({
-			marginLeft:0
-		} ,1200, "linear", function(){
-			$(this.lastElementChild).insertBefore(this.firstElementChild)
-			$(this).css('margin-left', `-${100}%`)
-		});
-	}
-
-	const autoplay = (elem) => {
-		let direction = elem.dataset.direction ? elem.dataset.direction : 'right'
-
-		elem.sliderInterval = setInterval(function() {
-			direction === 'left' ?
-				moveL(elem)
-			:
-				moveR(elem)
-		}, elem.dataset.sliderDelay)
-	}
-	
-	for (let i = 0; i < $slider.length; i++) {
-		let $slider__box = $($slider[i]).children('.slider__box')[0]
-		let $btns_left = $($slider[i]).children('.slider__btn--left')[0]
-		let $btns_right = $($slider[i]).children('.slider__btn--right')[0]
-
-		$($slider__box).css("width", `${$slider__box.childElementCount*100}%`)
-		$($slider__box.lastElementChild).insertBefore($slider__box.firstElementChild)
-		$($slider__box).css("margin-left", `-${100}%`)
-
-		autoplay($slider__box)
-
-		$($btns_left).on('click', () => {
-			moveL($slider__box)
-			clearInterval($slider__box.sliderInterval)
-			autoplay($slider__box)
-		})
-
-		$($btns_right).on('click', () => {
-			moveR($slider__box)
-			clearInterval($slider__box.sliderInterval)
-			autoplay($slider__box)
-		})
 	}
 
 	function SelectField (select) {
@@ -324,5 +247,179 @@ function init () {
 			
 		}
 	}
-}
 
+	function callSelectBox () {
+		$selectFields.forEach((selectField) => {
+			selectField = new SelectField(selectField);
+		});
+	}
+
+	function moveR (elem) {
+		let $sliderActiveBefore = $(elem).find('.slider__container--active').get(0);
+		$($sliderActiveBefore).addClass("slider__container--hidden").delay(600).queue(function(next){
+		    $(this).removeClass("slider__container--hidden slider__container--active");
+		    next();
+		});
+		
+		let $sliderItem = $(elem).children('.slider__item').get(2);
+		
+		let $sliderContainer = $($sliderItem).find('.slider__container').get(0);
+		
+		$($sliderContainer).delay(600).queue(function(next){
+		    $(this).addClass('slider__container--active')
+		    next();
+		});
+
+		$(elem).animate({
+			marginLeft: `-${200}%`
+		},1000, "linear", function() {
+			$(this.firstElementChild).insertAfter(this.lastElementChild)
+			$(this).css('margin-left', `-${100}%`)
+		})
+
+	}
+	function moveL (elem) {
+
+		let $sliderActiveBefore = $(elem).find('.slider__container--active').get(0);
+		$($sliderActiveBefore).addClass("slider__container--hidden").delay(600).queue(function(next){
+		    $(this).removeClass("slider__container--hidden slider__container--active");
+		    next();
+		});
+
+		let $sliderItem = $(elem).children('.slider__item').get(0);
+		let $sliderContainer = $($sliderItem).find('.slider__container').get(0);
+
+		$($sliderContainer).delay(600).queue(function(next){
+		    $(this).addClass('slider__container--active')
+		    next();
+		});
+
+
+		$(elem).animate({
+			marginLeft:0
+		} ,1200, "linear", function(){
+			$(this.lastElementChild).insertBefore(this.firstElementChild)
+			$(this).css('margin-left', `-${100}%`)
+		});
+	}
+
+	function autoplay (elem) {
+		let direction = elem.dataset.direction ? elem.dataset.direction : 'right'
+
+		elem.sliderInterval = setInterval(function() {
+			direction === 'left' ?
+				moveL(elem)
+			:
+				moveR(elem)
+		}, elem.dataset.sliderDelay)
+	}
+	
+	function callSliders () {
+		for (let i = 0; i < $slider.length; i++) {
+			let $slider__box = $($slider[i]).children('.slider__box')[0]
+			let $btns_left = $($slider[i]).children('.slider__btn--left')[0]
+			let $btns_right = $($slider[i]).children('.slider__btn--right')[0]
+
+			$($slider__box).css("width", `${$slider__box.childElementCount*100}%`)
+			$($slider__box.lastElementChild).insertBefore($slider__box.firstElementChild)
+			$($slider__box).css("margin-left", `-${100}%`)
+
+			autoplay($slider__box)
+
+			$($btns_left).on('click', () => {
+				moveL($slider__box)
+				clearInterval($slider__box.sliderInterval)
+				autoplay($slider__box)
+			})
+
+			$($btns_right).on('click', () => {
+				moveR($slider__box)
+				clearInterval($slider__box.sliderInterval)
+				autoplay($slider__box)
+			})
+		}
+	}
+
+	function modalTemplate (template, content) {
+		let hmtlContent;
+		switch(template) {
+			case 'services':
+				hmtlContent = `
+					<div class="modal__service">
+						<div class="row">
+							<div class="col--12 col--sm-12 col--md-12">
+								<div class="modal__name__service">${content.name}</div>
+								<img class="modal__img__service" src="assets/temp/${content.src}" />
+								<div class="modal__text__service m__b--x-2">${content.text}</div>
+							</div>
+						</div>
+					</div>
+				`
+				break;
+			default:
+				hmtlContent = ''
+		}
+
+		const html = document.implementation.createHTMLDocument();
+
+		html.body.innerHTML = hmtlContent;
+
+		return html.body.children[0];
+	}
+
+	function showModal(data) {
+		$overlay.classList.add('active')
+		$modal.style.animation = 'modalIn .8s forwards'
+		$body.classList.add('overflow-none')
+
+		const $modalTemplate = modalTemplate(data.template, data)
+		$modalContent.innerHTML = $modalTemplate.outerHTML
+	}
+
+	function hideModal() {
+		$modal.style.animation = 'modalOut .8s forwards';
+		$body.classList.remove('overflow-none');
+		$overlay.classList.add('fadeIn--overlay');
+		setTimeout(()=>{
+			$overlay.classList.remove('active', 'fadeIn--overlay')
+		}, 800)
+	}
+
+	function callModals () {
+		$modalOpen.forEach((btnModal) => {
+			btnModal.addEventListener('click', (e) => {
+				e.preventDefault()
+				if (isEmpty(e.target.dataset)) {
+					showModal(e.target.parentElement.dataset)
+				} else {
+					showModal(e.target.dataset)
+				}
+			})
+		})
+	}
+
+	/*Windows Events*/
+	window.onscroll = function() {
+		onScrollAction()
+	}
+
+	/*Call functions*/
+
+	scrollTo();
+	callCarousels();
+	callSelectBox();
+	callSliders();
+	callModals();
+
+	/*Click Events*/
+
+	$burgueMenu.addEventListener('click', (e) => {
+		let $headerMenu = document.querySelector('.header__menu');
+		$headerMenu.classList.toggle('header__menu--active');
+	});
+	
+	$hideModal.addEventListener('click', (e) => {
+		hideModal()
+	})
+
+}

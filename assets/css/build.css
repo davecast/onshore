@@ -700,8 +700,10 @@ header .header__phone {
     font-size: 16px;
     line-height: 15px;
 }
-.form__field--input:focus {
+.form__field--input:focus, 
+.form__field--input:active {
     outline: none;
+    box-shadow: none;
 }
 .form__field--textarea {
     resize: none;
@@ -1200,30 +1202,29 @@ header .header__phone {
   transform: scale(.9);
 }
 .modal-buttons {
-  position: absolute;
-  right: -.75px;
-  top: -.75px;
-  transform: rotate(45deg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fec900;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    position: absolute;
+    right: -17px;
+    top: -17px;
+    transform: rotate(45deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0c7bbf;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 .modal-buttons:hover { 
-  background: #23225b;
+  background: #81b522;
 }
 .modal-buttons i {
   transition: all 0.3s ease;
   transform: rotate(-45deg);
-  color: #23225b;
+  color: #fff;
 }
 .modal-buttons:hover i {
-  color: #fec900;
+  color: #fff;
 }
 .overlay {
   background: rgba(32,32,32,.95);
@@ -1265,7 +1266,7 @@ header .header__phone {
   width: 90%;
   background: #fff;
   padding: 2em;
-  border-radius: 17.5px;
+  border-radius: 4px;
   text-align: center;
   z-index: 9999;
   transform: translateY(-3000px);
