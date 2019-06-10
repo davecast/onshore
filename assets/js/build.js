@@ -340,6 +340,14 @@ function init () {
 		}
 	}
 
+	async function getService(service) {
+	    const response = await fetch("../services.json").catch( e => e );
+	    
+	    const data = await response.json()
+
+	    return data;
+	}
+
 	function modalTemplate (template, content) {
 		let hmtlContent;
 		switch(template) {
@@ -349,7 +357,7 @@ function init () {
 						<div class="row">
 							<div class="col--12 col--sm-12 col--md-12">
 								<div class="modal__name__service">${content.name}</div>
-								<img class="modal__img__service" src="assets/temp/${content.src}" />
+								<img class="modal__img__service" src="assets/img/${content.src}" />
 								<div class="modal__text__service m__b--x-2">${content.text}</div>
 							</div>
 						</div>

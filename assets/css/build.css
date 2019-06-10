@@ -619,6 +619,14 @@ header .header__phone {
     color: #fff;
     transition: all .3s ease-in-out;
 }
+.grid__service--action {
+        position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
 .grid__service--featured:hover .grid__service--title {
     background: rgba(12, 123, 191,0.8);
 }
