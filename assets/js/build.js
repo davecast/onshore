@@ -425,6 +425,64 @@ function init () {
 		})
 	}
 
+	function Forms (element) {
+		this.element = element;
+		this.sendBtn = this.element.querySelector('button');
+		this.sendBtn.addEventListener('click', (e) => {
+			e.preventDefault();
+			this.send();
+		})
+		this.element.addEventListener('submit', (e) => {
+			e.preventDefault();
+			this.send();
+		})
+		this.getParent = function (input) {
+			let parent;
+			if ( input.parentElement.classList.contains('form__field--select') ) {
+				parent = input.parentElement.parentElement;
+			} else {
+				parent = input.parentElement;
+			}
+
+			return parent
+		}
+		this.getMessageBox = function (parent) {
+			return parent.querySelector('.form__field--message');
+		}
+		this.isEmpty = function (value) {
+		    if (value == 'none') {
+		        return true
+		    }
+		    return value === ''
+		}
+		this.validateField = function () {
+
+		}
+		this.evaluateField = function (formData) {
+			for (let pair of formData.entries()) {
+				if (pair[0] != 'g-recaptcha-response') {
+					let $input = this.element.querySelector(`#${pair[0]}`);
+					let $parent = this.getParent($input);
+					let $message = this.getMessageBox($parent);
+					if (this.isEmpty(pair[1])) {
+						$parent.classList.add('form__field--error');
+						$message.innerText = 'This field is required';
+					}
+				}	
+			}
+		}
+		this.send = function () {
+			let formData = new FormData(this.element)
+			this.evaluateField(formData);
+		}
+	}
+	function callForms () {
+		let $forms = document.querySelectorAll('.form__object');
+
+		$forms.forEach((form) => {
+			form = new Forms(form);
+		}) 
+	}
 	/*Windows Events*/
 	window.onscroll = function() {
 		onScrollAction()
@@ -437,7 +495,7 @@ function init () {
 	callSelectBox();
 	callSliders();
 	callModals();
-
+	callForms();
 	/*Click Events*/
 
 	$burgueMenu.addEventListener('click', (e) => {
