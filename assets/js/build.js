@@ -341,7 +341,8 @@ function init () {
 	}
 
 	async function getService(service) {
-	    const response = await fetch("http://localhost/onshoresite/assets/services.json").then((res)=>{ return res.json()}).catch( e => e );
+		let url = `${window.location.href}assets/services.json`;
+	    const response = await fetch(url).then((res)=>{ return res.json()}).catch( e => e );
 			    
 	    let data = await response[service];
 
