@@ -341,46 +341,64 @@ function init () {
 	}
 
 	async function getService(service) {
-	    const response = await fetch("../services.json").catch( e => e );
-	    
-	    const data = await response.json()
+	    const response = await fetch("http://localhost/onshoresite/assets/services.json").then((res)=>{ return res.json()}).catch( e => e );
+			    
+	    let data = await response[service];
 
-	    return data;
-	}
-
-	function modalTemplate (template, content) {
-		let hmtlContent;
-		switch(template) {
-			case 'services':
-				hmtlContent = `
+	    let template = await `
 					<div class="modal__service">
 						<div class="row">
 							<div class="col--12 col--sm-12 col--md-12">
-								<div class="modal__name__service">${content.name}</div>
-								<img class="modal__img__service" src="assets/img/${content.src}" />
-								<div class="modal__text__service m__b--x-2">${content.text}</div>
+								<div class="modal__name__service">${data.name}</div>
+								<figure>
+									<img class="modal__img__service" src="assets/img/${data.image}" />
+								</figure>
+								<div class="modal__text__service m__b--x-2">${data.text}</div>
 							</div>
 						</div>
 					</div>
-				`
+				`;
+
+		return template;
+	}
+
+	async function modalTemplate (template, content) {
+		let htmlContent;
+
+		switch(template) {
+			case 'services':
+				htmlContent = await getService(content.service);
+				break;
+			case 'portfolio':
+
+				htmlContent = `<div class="modal__portfolio">
+					<div class="row">
+						<div class="col--12 col--sm-12 col--md-12">
+							<figure>
+								<img class="modal__img__service" src="assets/img/${content.image}" />
+							</figure>
+						</div>
+					</div>
+				</div>`;
 				break;
 			default:
-				hmtlContent = ''
+				htmlContent = '';
 		}
 
 		const html = document.implementation.createHTMLDocument();
 
-		html.body.innerHTML = hmtlContent;
+		html.body.innerHTML =  await htmlContent;
 
 		return html.body.children[0];
 	}
 
-	function showModal(data) {
+	async function showModal(data) {
 		$overlay.classList.add('active')
 		$modal.style.animation = 'modalIn .8s forwards'
 		$body.classList.add('overflow-none')
 
-		const $modalTemplate = modalTemplate(data.template, data)
+		const $modalTemplate = await modalTemplate(data.template, data)
+
 		$modalContent.innerHTML = $modalTemplate.outerHTML
 	}
 

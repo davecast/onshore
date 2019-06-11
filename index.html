@@ -90,7 +90,7 @@
                         <div class="grid__service--title">
                             MOVE IN/OUT CLEANING
                         </div>
-                        <div data-template="services" class="grid__service--action modal__open"></div>
+                        <div data-template="services" data-service="2" class="grid__service--action modal__open"></div>
                     </div>
                     <div class="grid__service--featured">
                         <figure class="grid__service--background">
@@ -99,7 +99,7 @@
                         <div class="grid__service--title">
                             OFFICE CLEANING
                         </div>
-                        <div data-template="services" class="grid__service--action modal__open"></div>
+                        <div data-template="services" data-service="3" class="grid__service--action modal__open"></div>
                     </div>
                     <div class="grid__service--featured">
                         <figure class="grid__service--background">
@@ -108,7 +108,7 @@
                         <div class="grid__service--title">
                             OVEN CLEANING
                         </div>
-                        <div data-template="services" class="grid__service--action modal__open"></div>
+                        <div data-template="services" data-service="4" class="grid__service--action modal__open"></div>
                     </div>
                     <div class="grid__service--featured">
                         <figure class="grid__service--background">
@@ -117,7 +117,7 @@
                         <div class="grid__service--title">
                             REFRIGERATOR CLEANING
                         </div>
-                        <div data-template="services" class="grid__service--action modal__open"></div>
+                        <div data-template="services" data-service="5" class="grid__service--action modal__open"></div>
                     </div>
                 </div>
                 <div class="grid__service__mini">
@@ -128,7 +128,7 @@
                         <div class="grid__service--title">
                             KITCHEN CABINETS CLEANING
                         </div>
-                        <div data-template="services" class="grid__service--action modal__open"></div>
+                        <div data-template="services" data-service="6" class="grid__service--action modal__open"></div>
                     </div>
                     <div class="grid__service--featured">
                         <figure class="grid__service--background">
@@ -137,7 +137,7 @@
                         <div class="grid__service--title">
                             KITCHEN CABINETS CLEANING
                         </div>
-                        <div data-template="services" class="grid__service--action modal__open"></div>
+                        <div data-template="services" data-service="7" class="grid__service--action modal__open"></div>
                     </div>
                 </div>
             </div>
@@ -163,21 +163,25 @@
                             <figure>
                                 <img src="./assets/img/s1.png" alt="">
                             </figure>
+                            <div class="carousel__panel--action modal__open" data-image="s1.png" data-template="portfolio"></div>
                         </div>
                         <div data-numero="2" class="carousel__panel carousel__panel--inView carousel__panel--right">
                             <figure>
                                 <img src="./assets/img/s2.png" alt="">
                             </figure>
+                            <div class="carousel__panel--action modal__open" data-image="s2.png" data-template="portfolio"></div>
                         </div>
                         <div data-numero="3" class="carousel__panel carousel__panel--outView carousel__panel--right">
                             <figure>
                                 <img src="./assets/img/s3.png" alt="">
                             </figure>
+                            <div class="carousel__panel--action modal__open" data-image="s3.png" data-template="portfolio"></div>
                         </div>
                         <div data-numero="4" class="carousel__panel carousel__panel--outView carousel__panel--right">
                             <figure>
                                 <img src="./assets/img/s4.png" alt="">
                             </figure>
+                            <div class="carousel__panel--action modal__open" data-image="s4.png" data-template="portfolio"></div>
                         </div>
 
                     </div>
@@ -611,16 +615,16 @@
     </footer>
 
     <!-- Modal -->
-    
-    <div class="overlay" id="overlay"></div>
-    <div class="modal" id="modal">
-        <div id="modal-content">
-        </div>
-        <div id="hide-modal" class="modal-buttons">
-            <i class="fas fa-times"></i>
+    <div class="modal__box">
+        <div class="overlay" id="overlay"></div>
+        <div class="modal" id="modal">
+            <div id="modal-content">
+            </div>
+            <div id="hide-modal" class="modal-buttons">
+                <i class="fas fa-times"></i>
+            </div>
         </div>
     </div>
-
     <!-- Modal -->
 
     <script src="assets/js/build.js"></script>
