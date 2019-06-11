@@ -719,6 +719,7 @@ header .header__phone {
 }
 .form__field--select {
     position: relative;
+    margin-bottom: 5px;
 }
 .form__field--select--selected {
     width: 100%;
