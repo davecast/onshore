@@ -1,5 +1,5 @@
 
-function init () {
+async function init () {
 
 	/*Declare variables*/
 	let $body = document.querySelector('body');
@@ -424,7 +424,15 @@ function init () {
 			})
 		})
 	}
-
+	function delay(milliseconds) {
+	  return function(result) {
+	    return new Promise(function(resolve, reject) {
+	      setTimeout(function() {
+	        resolve(result);
+	      }, milliseconds);
+	    });
+	  };
+	}
 	function Forms (element) {
 		this.element = element;
 		this.error = [];
@@ -533,7 +541,7 @@ function init () {
 		            return false
 		    }
 		}
-		this.evaluateField = function (formData) {
+		this.evaluateField = async function (formData) {
 			this.error = [];
 			for (let pair of formData.entries()) {
 				if (pair[0] != 'g-recaptcha-response') {
@@ -566,9 +574,34 @@ function init () {
 			if (this.error.length == 0 ) {
 				this.sendBtnText.innerText = "LOADING"
 				this.sending = true;
+
+				let response = await this.postForm(`url`, 'data');
+
+				if (await response) {
+					if (!response.error) {
+						console.log('message send;')
+                        //$form.classList.add('form__hidden')
+                        //$messageQuote.classList.add('active__quote')
+                        //$messageQuote.innerHTML = `<p>Hi your quote has be send.</p>`;                            
+                    } else {
+                        //addMessage('Upss.. Some error on database', 'danger')
+                    }
+				}
+                
 			}
 		}
-		this.send = function () {
+		this.postForm = function (url, data) {
+			return delay(3000)(data).then(function(result) {
+			  return {
+			  	"error": false,
+			  	"response": {
+			  		"first_name":"david",
+			  		"last_name":"castillo"
+			  	}
+			  }
+			});
+		}
+		this.send = async function () {
 			let formData = new FormData(this.element)
 			this.evaluateField(formData);
 		}
