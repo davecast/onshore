@@ -427,14 +427,21 @@ function init () {
 
 	function Forms (element) {
 		this.element = element;
+		this.error = [];
+		this.sending = false;
 		this.sendBtn = this.element.querySelector('button');
+		this.sendBtnText = this.sendBtn.querySelector('span');
 		this.sendBtn.addEventListener('click', (e) => {
 			e.preventDefault();
-			this.send();
+			if (!this.sending) {
+				this.send();	
+			}
 		})
 		this.element.addEventListener('submit', (e) => {
 			e.preventDefault();
-			this.send();
+			if (!this.sending) {
+				this.send();	
+			}
 		})
 		this.getParent = function (input) {
 			let parent;
@@ -455,10 +462,79 @@ function init () {
 		    }
 		    return value === ''
 		}
-		this.validateField = function () {
+		this.validateField = function (typeValidate, value) {
+			let regex, response;
 
+    		switch (typeValidate) {
+    			case 'text':
+		            regex = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/i
+		            response = {
+		                validation: regex.test(value),
+		                message: 'Only letters'
+		            }
+		            if(regex.test(value) && value.length <= 3) {
+		                response.validation = false
+		                response.message = 'First name must be longer to 3 characters'
+		            }
+	            	return response
+	            case 'comment':
+		            regex = /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\.\, ]+$/i
+		            response = {
+		                validation: regex.test(value),
+		                message: 'Only (. or ,) are allowed as special characters'
+		            }
+		            /* Reparar esto agregar espacios en blanco */
+		            if(regex.test(value) && value.length <= 25) {
+		                response.validation = false
+		                response.message = 'The description must have more than 25 characters'
+		            }
+		            if(regex.test(value) && value.length > 140) {
+		                response.validation = false
+		                response.message = 'The description must have more than 140 characters'
+		            }
+		            return response
+	            case 'address':
+		            regex = /^[-.?!,;:()# A-Za-z0-9]*$/i
+		            response = {
+		                validation: regex.test(value),
+		                message: 'Only this special char -.?!,;:()#.'
+		            }
+		            /* Reparar esto agregar espacios en blanco */
+		            if(regex.test(value) && value.length <= 10) {
+		                response.validation = false
+		                response.message = 'The description must have more than 10 characters'
+		            }
+		            if(regex.test(value) && value.length > 140) {
+		                response.validation = false
+		                response.message = 'The description must have more than 140 characters'
+		            }
+		            return response
+		        case 'email':
+		            regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+		            response = {
+		                validation: regex.test(value),
+		                message: 'Invalid format, try with name@host.com'
+		            }
+		            return response
+		        case 'phone':
+		            regex = /^[-+# 0-9]*$/i
+		            response = {
+		                validation: regex.test(value),
+		                message: 'Invalid phone number.'
+		            }
+		            return response
+		        case 'hidden':
+		            response = {
+		                validation: true,
+		                message: ''
+		            }
+		            return response
+		        default:
+		            return false
+		    }
 		}
 		this.evaluateField = function (formData) {
+			this.error = [];
 			for (let pair of formData.entries()) {
 				if (pair[0] != 'g-recaptcha-response') {
 					let $input = this.element.querySelector(`#${pair[0]}`);
@@ -467,8 +543,29 @@ function init () {
 					if (this.isEmpty(pair[1])) {
 						$parent.classList.add('form__field--error');
 						$message.innerText = 'This field is required';
+						this.error.push(pair[0])
+					} else {
+						$parent.classList.remove('form__field--error');
+						$message.innerText = '';
+						
+						let isValid = this.validateField($input.dataset.validate, pair[1] );
+
+						if (isValid.validation) {
+							$parent.classList.remove('form__field--error');
+							$message.innerText = "";
+						} else {
+							this.error.push(pair[0])
+							$parent.classList.add('form__field--error');
+							$message.innerText = isValid.message;
+						}
+
 					}
 				}	
+			}
+
+			if (this.error.length == 0 ) {
+				this.sendBtnText.innerText = "LOADING"
+				this.sending = true;
 			}
 		}
 		this.send = function () {
