@@ -1,3 +1,68 @@
+.message__box {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 350px;
+    z-index: 25;
+    padding: 0 25px;
+    flex-direction: column;
+}
+.message {
+    width: 100%;
+    background: #3e88bc;
+    display: flex;
+    margin-bottom: 0px;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: margin 0.3s ease, opacity 0.3s ease;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.message:active {
+    margin-bottom: 10px;
+}
+.message--active {
+    opacity: 1;
+    margin-bottom: 15px;
+    padding: 25px 10px;
+    height: auto;
+}
+.message--sussess {
+    background: #28a745;
+}
+.message--warning {
+    background: #f03636;
+}
+.message--hidden {
+    opacity: 0;
+}
+.message__text {
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 20px;
+    font-size: 12px;
+}
+@media screen and (max-width: 575.98px) {
+    .message__box {
+        width: 100%;
+        max-height: 110px;
+        overflow: hidden;
+    }
+    .message--active {
+        padding: 10px 5px;
+        height: 40px;
+    }
+    .message {
+        border-radius: 10px;
+        flex: 1 0 auto;
+    }
+}
 .slider {
     overflow: hidden;
     position: relative;
