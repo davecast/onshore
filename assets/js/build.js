@@ -579,10 +579,9 @@ async function init () {
 
 				if (await response) {
 					if (!response.error) {
-						console.log('message send;')
-                        //$form.classList.add('form__hidden')
-                        //$messageQuote.classList.add('active__quote')
-                        //$messageQuote.innerHTML = `<p>Hi your quote has be send.</p>`;                            
+                        this.element.classList.add('form__hidden');
+                        this.element.nextElementSibling.classList.add('form__send__message--active');
+                        this.element.nextElementSibling.innerHTML = `<p>Hi ${response.data.first_name} ${response.data.last_name} your quote has be send.</p>`;                          
                     } else {
                         //addMessage('Upss.. Some error on database', 'danger')
                     }
@@ -594,7 +593,7 @@ async function init () {
 			return delay(3000)(data).then(function(result) {
 			  return {
 			  	"error": false,
-			  	"response": {
+			  	"data": {
 			  		"first_name":"david",
 			  		"last_name":"castillo"
 			  	}

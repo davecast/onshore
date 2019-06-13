@@ -674,7 +674,13 @@ header .header__phone {
     background-repeat: no-repeat;
 }
 /*Grid section*/
-
+.form__hidden {
+    display: none;
+}
+.form__send__message {display: none;}
+.form__send__message.form__send__message--active {
+    display: block;
+}
 .form__estimate {
 
 }
