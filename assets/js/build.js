@@ -10,6 +10,7 @@ async function init () {
 	let $banner = document.getElementById('banner');
 	let $services = document.getElementById('services');
 	let $portfolio = document.getElementById('portfolio');
+	let $estimate = document.getElementById('estimate');
 	let $about = document.getElementById('about');
 	let $contact = document.getElementById('contact');
 	let $selectFields = document.querySelectorAll('.form__field--select');
@@ -34,7 +35,7 @@ async function init () {
 	}
 
 	function scrollTo() {
-		const links = document.querySelectorAll('.header__link');
+		const links = document.querySelectorAll('.link__to__go');
 		links.forEach(each => (each.onclick = scrollAnchors));
 	}
 
@@ -99,16 +100,18 @@ async function init () {
 	function onScrollAction () {
 		
 		if ( (window.pageYOffset > $banner.offsetTop - 150) && (window.pageYOffset < ($banner.offsetHeight + $banner.offsetTop - 150) ) ) {
-			activeMenu('#banner')
+			activeMenu('#banner');
 		}
 		else if ( (window.pageYOffset > $services.offsetTop - 150) && (window.pageYOffset < ($services.offsetHeight + $services.offsetTop - 150) ) ) {
-			activeMenu('#services')
+			activeMenu('#services');
 		} else if ( (window.pageYOffset > $portfolio.offsetTop - 150) && (window.pageYOffset < ($portfolio.offsetHeight + $portfolio.offsetTop - 150) ) ) {
-			activeMenu('#portfolio')
+			activeMenu('#portfolio');
 		} else if ( (window.pageYOffset > $about.offsetTop - 150) && (window.pageYOffset < ($about.offsetHeight + $about.offsetTop - 150) ) ) {
-			activeMenu('#about')
+			activeMenu('#about');
 		} else if ( (window.pageYOffset > $contact.offsetTop - 150) && (window.pageYOffset < ($contact.offsetHeight + $contact.offsetTop - 150) ) ) {
-			activeMenu('#contact')
+			activeMenu('#contact');
+		} else if ( (window.pageYOffset > $estimate.offsetTop - 150) && (window.pageYOffset < ($estimate.offsetHeight + $estimate.offsetTop - 150) ) ) {
+			activeMenu('#estimate');
 		}
 	}
 
@@ -117,7 +120,6 @@ async function init () {
 		if ($beforeElement) {
 			$beforeElement.classList.remove('menu--active')
 		}
-		
 		let $nextElement = document.querySelector(`a[href='${id}']`)
 		$nextElement.classList.add('menu--active')
 	}
@@ -410,7 +412,7 @@ async function init () {
             }
         }, false);
     }
-    
+
     function callSliders () {
         $slider.forEach((slider)=>{
             slider.sld = new Slider(slider);
