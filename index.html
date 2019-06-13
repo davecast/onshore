@@ -346,6 +346,7 @@
                         <button><span>SEND</span><img src="./assets/img/send.png" /></button>
                     </div>
                 </form>
+                <div class="form__send__message"></div>
             </div>
         </section>
         <!-- Estimate -->
@@ -490,27 +491,27 @@
                             <div class="grid_request--form--content">
                                 <div class="form__field">
                                     <label class="form__field--label">FIRST NAME:</label>
-                                    <input class="form__field--input" type="text" name="first_name" id="first_name" />
+                                    <input data-validate="text" class="form__field--input" type="text" name="first_name" id="first_name" />
                                     <span class="form__field--message">This is test only message</span>
                                 </div>
                                 <div class="form__field">
                                     <label class="form__field--label">LAST NAME:</label>
-                                    <input class="form__field--input" type="text" name="last_name" id="last_name" />
+                                    <input data-validate="text" class="form__field--input" type="text" name="last_name" id="last_name" />
                                     <span class="form__field--message">This is test only message</span>
                                 </div>
                                 <div class="form__field">
                                     <label class="form__field--label">PHONE NUMBER:</label>
-                                    <input class="form__field--input" type="text" name="phone" id="phone" />
+                                    <input data-validate="phone" class="form__field--input" type="text" name="phone" id="phone" />
                                     <span class="form__field--message">This is test only message</span>
                                 </div>
                                 <div class="form__field">
                                     <label class="form__field--label">E-MAIL ADDRESS:</label>
-                                    <input class="form__field--input" type="text" name="email" id="email" />
+                                    <input data-validate="email" class="form__field--input" type="text" name="email" id="email" />
                                     <span class="form__field--message">This is test only message</span>
                                 </div>
                                 <div class="form__field form__field--last">
                                     <label class="form__field--label">COMMENTS:</label>
-                                    <textarea class="form__field--input form__field--textarea" name="comments" id="comments"></textarea>
+                                    <textarea data-validate="comment" class="form__field--input form__field--textarea" name="comments" id="comments"></textarea>
                                     <span class="form__field--message">This is test only message</span>
                                 </div>
                             </div>
@@ -521,6 +522,7 @@
                             <button><span>SEND</span><img src="./assets/img/send.png" /></button>
                         </div>
                     </form>
+                    <div class="form__send__message"></div>
                     <div class="">
                         <div class="contact__title">
                             <figure>
