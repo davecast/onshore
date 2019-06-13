@@ -655,8 +655,10 @@ async function init () {
 				this.sendBtnText.innerText = "LOADING"
 				this.sending = true;
 
-				let response = await this.postForm(`url`, 'data');
-
+				let response = await this.postForm(
+					`http://localhost/onshoreconnect/add/add.php?type=contact`, 
+					new FormData(this.element));
+				console.log(response)
 				if (await response) {
 					if (!response.error) {
                         this.element.classList.add('form__hidden');
@@ -669,8 +671,22 @@ async function init () {
                 
 			}
 		}
-		this.postForm = function (url, data) {
-			return delay(3000)(data).then(function(result) {
+		this.postForm = async function (url, data) {
+			params = {
+		        method: 'POST',
+		        body: data   
+		    };
+
+		    var request = new Request( url, params );
+		 
+		    let respose = await fetch( request ).then( r => r.json() )
+		    .then( data => {
+		        return data
+		    })
+		    .catch( e => e );
+
+		    return respose
+			/*return delay(3000)(data).then(function(result) {
 			  return {
 			  	"error": false,
 			  	"data": {
@@ -678,7 +694,7 @@ async function init () {
 			  		"last_name":"castillo"
 			  	}
 			  }
-			});
+			});*/
 		}
 		this.send = async function () {
 			//addMessage('Precionamos el boton', 'danger')
