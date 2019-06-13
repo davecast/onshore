@@ -581,7 +581,7 @@ header .header__logo figure img {
 header .header__menu {
     width: 100%;
     max-width: 590px;
-    padding: 0;
+    padding: 0 30px;
     margin: 0;
     list-style: none;
     display: flex;
@@ -1512,6 +1512,9 @@ header .header__phone {
 }
 
 @media screen and (max-width: 960px) {
+    header .header__menu {
+        padding: 0 15px;
+    } 
     header .header__container {
         grid-template: 115px / 150px 1fr 170px;
     }
@@ -1595,6 +1598,15 @@ header .header__phone {
     .footer--pie p {
         font-size: 16px;
         line-height: 16px;
+    }
+}
+@media screen and (max-width: 840px) {
+    header .header__menu {
+        padding: 0 8px;
+    } 
+    header .header__menu li a {
+        font-size: 12px;
+        line-height: 12px;
     }
 }
 
