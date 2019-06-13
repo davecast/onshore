@@ -746,6 +746,13 @@ header .header__phone {
 .form__send__message.form__send__message--active {
     display: block;
 }
+.form__send__message p {
+    text-align: center;
+}
+.form__send__message p span {
+    font-weight: bold;
+    color: #81b522;
+}
 .form__estimate {
 
 }

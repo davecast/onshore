@@ -515,6 +515,7 @@ async function init () {
 	}
 	function Forms (element) {
 		this.element = element;
+		this.type = this.element.dataset.typeForm;
 		this.error = [];
 		this.sending = false;
 		this.sendBtn = this.element.querySelector('button');
@@ -656,14 +657,14 @@ async function init () {
 				this.sending = true;
 
 				let response = await this.postForm(
-					`http://localhost/onshoreconnect/add/add.php?type=contact`, 
+					`http://localhost/onshoreconnect/add/add.php?type=${this.type}`, 
 					new FormData(this.element));
 				console.log(response)
 				if (await response) {
 					if (!response.error) {
                         this.element.classList.add('form__hidden');
                         this.element.nextElementSibling.classList.add('form__send__message--active');
-                        this.element.nextElementSibling.innerHTML = `<p>Hi ${response.data.first_name} ${response.data.last_name} your quote has be send.</p>`;                          
+                        this.element.nextElementSibling.innerHTML = this.sendMessage(this.type, response.data);                          
                     } else {
                         //addMessage('Upss.. Some error on database', 'danger')
                     }
@@ -695,6 +696,16 @@ async function init () {
 			  	}
 			  }
 			});*/
+		}
+		this.sendMessage = function (type, data) {
+    		switch (type) {
+    			case 'contact':
+	            	return `<p>Hi <span>${data.first_name} ${data.last_name}</span>, We will be in touch soon.</p>`;
+	            case 'estimate':
+		            return `<p>Hi <span>${data.first_name} ${data.last_name}</span> your quote has be send.</p>`;
+		        default:
+		            return false
+		    }
 		}
 		this.send = async function () {
 			//addMessage('Precionamos el boton', 'danger')
