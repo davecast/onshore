@@ -485,7 +485,7 @@
                     <h2 class="section__title section__title--green"><strong>CONTACT US</strong></h2>
                 </div>
                 <div class="grid_request grid_request--contact">
-                    <form class="form__object" data-type-form="contact" >
+                    <form id="contact__form" class="form__object" data-type-form="contact" >
                         <div class="grid_request--form grid_request--form--contact">
                             <div class="grid_request--form--content">
                                 <div class="form__field">
@@ -518,7 +518,7 @@
                             
                         </div>
                         <div class="form__send">
-                            <button><span>SEND</span><img src="./assets/img/send.png" /></button>
+                            <button data-target="contact__form" class="link__to__go"><span>SEND</span><img src="./assets/img/send.png" /></button>
                         </div>
                     </form>
                     <div class="form__send__message"></div>

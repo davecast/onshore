@@ -36,17 +36,27 @@ async function init () {
 
 	function scrollTo() {
 		const links = document.querySelectorAll('.link__to__go');
-		links.forEach(each => (each.onclick = scrollAnchors));
+		links.forEach( (each) => {
+			each.onclick = scrollAnchors;	
+		});
 	}
 
-	function scrollAnchors(e, respond = null) {
-		const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
+
+
+	function scrollAnchors(e) {
 		e.preventDefault();
-		var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
+		const distanceToTop = (el) => {
+			return Math.floor(el.getBoundingClientRect().top);
+		};
+		let targetID = (this.getAttribute('href')) ? this.getAttribute('href') : `#${this.dataset.target}`;
 		const targetAnchor = document.querySelector(targetID);
 		if (!targetAnchor) return;
 		const originalTop = distanceToTop(targetAnchor);
-		window.scrollBy({ top: originalTop - header.clientHeight, left: 0, behavior: 'smooth' });
+		window.scrollBy({ 
+			top: originalTop - header.clientHeight, 
+			left: 0, 
+			behavior: 'smooth' 
+		});
 		const checkIfDone = setInterval(function() {
 			const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
 			if (distanceToTop(targetAnchor) === 0 || atBottom) {
@@ -666,7 +676,7 @@ async function init () {
                         this.element.nextElementSibling.classList.add('form__send__message--active');
                         this.element.nextElementSibling.innerHTML = this.sendMessage(this.type, response.data);                          
                     } else {
-                        //addMessage('Upss.. Some error on database', 'danger')
+                        addMessage('Upss.. Some error on database', 'danger')
                     }
 				}
                 
@@ -708,7 +718,6 @@ async function init () {
 		    }
 		}
 		this.send = async function () {
-			//addMessage('Precionamos el boton', 'danger')
 			let formData = new FormData(this.element)
 			this.evaluateField(formData);
 		}
