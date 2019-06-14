@@ -43,12 +43,19 @@ async function init () {
 
 
 
-	function scrollAnchors(e) {
-		e.preventDefault();
+	function scrollAnchors(e, type) {
+		
 		const distanceToTop = (el) => {
 			return Math.floor(el.getBoundingClientRect().top);
 		};
-		let targetID = (this.getAttribute('href')) ? this.getAttribute('href') : `#${this.dataset.target}`;
+		let targetID;
+		if (type) {
+			targetID = `#${type}`
+		} else {
+			e.preventDefault();
+			targetID = (this.getAttribute('href')) ? this.getAttribute('href') : `#${this.dataset.target}`;
+		}
+		
 		const targetAnchor = document.querySelector(targetID);
 		if (!targetAnchor) return;
 		const originalTop = distanceToTop(targetAnchor);
@@ -674,7 +681,8 @@ async function init () {
 					if (!response.error) {
                         this.element.classList.add('form__hidden');
                         this.element.nextElementSibling.classList.add('form__send__message--active');
-                        this.element.nextElementSibling.innerHTML = this.sendMessage(this.type, response.data);                          
+                        this.element.nextElementSibling.innerHTML = this.sendMessage(this.type, response.data); 
+                        scrollAnchors(null, this.type);                         
                     } else {
                         addMessage('Upss.. Some error on database', 'danger')
                     }
@@ -712,7 +720,7 @@ async function init () {
     			case 'contact':
 	            	return `<p>Hi <span>${data.first_name} ${data.last_name}</span>, We will be in touch soon.</p>`;
 	            case 'estimate':
-		            return `<p>Hi <span>${data.first_name} ${data.last_name}</span> your quote has be send.</p>`;
+		            return `<p>Hi <span>${data.first_name} ${data.last_name}</span> your free estimate request has be send.</p>`;
 		        default:
 		            return false
 		    }
