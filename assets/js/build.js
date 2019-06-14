@@ -676,7 +676,7 @@ async function init () {
 				let response = await this.postForm(
 					`http://localhost/onshoreconnect/add/add.php?type=${this.type}`, 
 					new FormData(this.element));
-				console.log(response)
+				
 				if (await response) {
 					if (!response.error) {
                         this.element.classList.add('form__hidden');
